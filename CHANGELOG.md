@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-Acquire table game in JAVA
+Todo List in Java
 
 ## [Unreleased]  
 
