@@ -1,10 +1,10 @@
 package main.engine;
 
-public class Main {
+public class Todo {
     private Task task;
     private Project project;
 
-    public Main(){
+    public Todo(){
 
     }
 
