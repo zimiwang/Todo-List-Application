@@ -16,19 +16,15 @@ This personal project is to design and build an independent window-based ToDo Li
   - [Acknowledgments](#acknowledgments)
 
 ## Installing
-A step by step series of examples that tell you how to get a development
-env running
+  1. Clone the repository
+  
+    git clone https://github.com/UserZiming/3321-project-Ziming-Wang.git
+  2. Navigate into the repo
+  
+    cd 3321-project-Ziming-Wang
+  3. Run the main file
 
-Say what the step will be
 
-    Give the example
-
-And repeat
-
-    until finished
-
-End with an example of getting some data out of the system or using it
-for a little demo
 ## Authors
 
   - **Ziming Wang** - *Provided everything for this project* -
