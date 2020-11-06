@@ -3,14 +3,12 @@
 ## Table of Contents
 
   - [Description](#description)
-  - [Getting Started](#getting-started)
   - [Tests](#tests)
   - [Deployment](#deployment)
   - [Installing](#installing)
   - [Usage](#usage)
   - [Contributing](#contributing)
   - [Building](#building)
-  - [Versioning](#versioning)
   - [Authors](#authors)
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
@@ -70,3 +68,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## Acknowledgments
+
+  - Hat tip to anyone whose code was used
+  - Inspiration
+  - etc
