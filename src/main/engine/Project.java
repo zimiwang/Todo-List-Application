@@ -13,6 +13,7 @@ public class Project {
     public Project(String name, int id, String due_date) {
         this.name = name;
         this.due_date = due_date;
+        this.id = id;
         status = false;
         project = new LinkedList<>();
     }
@@ -20,15 +21,18 @@ public class Project {
     public String getName(){
         return name;
     }
+
     public int getId(){
         return id;
     }
+
     public String getDue_date(){
         return due_date;
     }
     public boolean getStatus(){
         return status;
     }
+
     public LinkedList<Task> getProject(){
         return project;
     }
@@ -51,17 +55,17 @@ public class Project {
         project.add(t);
     }
 
-    public void removeTask(int number){
-        while(true){
-            if (project.getFirst().getId() == number){
-                project.removeFirst();
-                break;
+    public void removeTask(int id){
+
+        for (int i = 0; i < project.size(); i++){
+            if (project.get(i).getId() == id){
+                project.remove(i);
             }
             else{
-                project.addLast(project.getFirst());
-                project.removeFirst();
+                throw new IllegalArgumentException("There is no this task!");
             }
         }
+
     }
 
     public void changeStatus(){
