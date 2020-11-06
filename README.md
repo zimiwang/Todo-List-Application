@@ -4,8 +4,7 @@
 
   - [Description](#description)
   - [Tests](#tests)
-  - [Deployment](#deployment)
-  - [Installing](#installing)
+  - [Installation](#installation)
   - [Usage](#usage)
   - [Contributing](#contributing)
   - [Building](#building)
@@ -20,9 +19,16 @@ This personal project is to design and build an independent window-based ToDo Li
 
 ## Tests
 The test part uses Junit unit test. During this period, I followed the TDD method, first constructed the test method, and then completed the corresponding source code.  
-During this period, I used JAVA throughout. Since this project only requires MVP features, I have completed testing all the situations I can think of. (Remove getter, setter and all constructors)  
-@@ -32,47 +30,14 @@ During this period, I used JAVA throughout. Since this project only requires MVP
+During this period, I used JAVA throughout. Since this project only requires MVP features, I have completed testing all the situations I can think of. (Remove getter, setter and all constructors)
 
+## Installation
+  1. Clone the repository
+  
+    git clone https://github.com/UserZiming/3321-project-Ziming-Wang.git
+  2. Navigate into the repo
+  
+    cd 3321-project-Ziming-Wang
+  3. Run the main file
 ## Usage
 
 ## Contributing
