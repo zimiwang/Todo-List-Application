@@ -1,5 +1,6 @@
 package main.gui;
 
+import main.engine.Todo;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,6 +10,9 @@ import java.util.ArrayList;
 import java.util.concurrent.Flow;
 
 public class Interface {
+
+    Todo todo;
+
     int counter = 1;
     int number = 1;
     JFrame frame;
@@ -30,9 +34,8 @@ public class Interface {
     // 点击project打开新的页面
     ArrayList<JButton> buttonArray;
 
-
-
     public Interface() {
+        todo = new Todo();
 
         frame = new JFrame();
         jPanel1 = new JPanel();
@@ -118,7 +121,6 @@ public class Interface {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
                 frame.invalidate();
                 frame.validate();
             }
@@ -202,6 +204,11 @@ public class Interface {
                 confirmCancel(confirmButton, cancelButton, taskTxt, cmb, taskFrame, jPanel2, frame, jSplitPane);
 
                 // For cancel button
+
+
+                //和Logic part 联动
+                todo.addTask(taskTxt.getText(), counter, (String) cmb.getSelectedItem());
+
 
             }
         });
