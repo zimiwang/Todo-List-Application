@@ -2,17 +2,17 @@ package main.engine;
 
 import java.util.LinkedList;
 
-public class Todo {
-    private Task task;
-    private Project project;
-    private OperationManager operationManager;
+public class OperationManager {
+//    private Task task;
+//    private Project project;
+
     private LinkedList<Task> tasks;
     private LinkedList<Project> projects;
 
-    public Todo(){
+    public OperationManager(){
+
         tasks = new LinkedList<>();
         projects = new LinkedList<>();
-        operationManager = new OperationManager();
     }
 
     public Task getTask(int id){
@@ -119,5 +119,4 @@ public class Todo {
         }
 
     }
-
 }

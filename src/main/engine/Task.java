@@ -1,5 +1,7 @@
 package main.engine;
 
+import java.util.LinkedList;
+
 public class Task {
     // instance 变量
     private String name;
@@ -10,6 +12,7 @@ public class Task {
     // 构造函数
     public Task(String name, int id, String due_date) {
         this.name = name;
+        this.id = id;
         this.due_date = due_date;
         status = false;
     }
@@ -26,6 +29,7 @@ public class Task {
     public boolean getStatus(){
         return status;
     }
+
     // ----------setter---------
     public void setName(String name){
         this.name = name;
@@ -39,6 +43,7 @@ public class Task {
     public void setDue_date(String due_date){
         this.due_date = due_date;
     }
+
 
     public void changeStatus(){
         status = true;
