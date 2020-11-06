@@ -32,3 +32,12 @@ for a little demo
 ## Authors
 
   - **Ziming Wang** - *Provided everything for this project* -
+
+
+
+
+## Acknowledgments
+
+  - Hat tip to anyone whose code was used
+  - Inspiration
+  - etc
