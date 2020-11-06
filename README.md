@@ -8,7 +8,7 @@ This personal project is to design and build an independent window-based ToDo Li
   - [Getting Started](#getting-started)
   - [Runing the tests](#running-the-tests)
   - [Deployment](#deployment)
-  - [Built With](#built-with)
+  - [Installing](#installing)
   - [Contributing](#contributing)
   - [Versioning](#versioning)
   - [Authors](#authors)
