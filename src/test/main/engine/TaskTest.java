@@ -11,7 +11,12 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-
+/**
+ * This class is a test class for all methods in the Task class.
+ * Through testing the use of various methods to ensure that they can operate normally.
+ * @author Ziming Wang
+ * @version 1.0
+ */
 public class TaskTest {
 
     Task test;

@@ -9,6 +9,11 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.concurrent.Flow;
 
+/**
+ * This class contains all the gui parts in java swing. Output the To-do list in the form of a graphical interface.
+ * @author Ziming Wang
+ * @version 1.0
+ */
 public class Interface {
 
     Todo todo;
@@ -42,8 +47,6 @@ public class Interface {
         jPanel2 = new JPanel();
 
         buttonArray = new ArrayList<>();
-//        jPanel3 = new JPanel();
-//        jPanel4 = new JPanel();
 
         initialize();
     }
@@ -64,8 +67,6 @@ public class Interface {
         taskButton = new JButton("+Add Task");
         projectButton = new JButton("+Add Project");
         homeButton = new JButton("Home");
-
-//        test = new JButton("Test!!!!!!!!");
 
         //设置按钮参数
         taskButton.setFont(new Font("Arial", Font.BOLD, 16));
@@ -92,8 +93,6 @@ public class Interface {
         jPanel1.add(projectButton);
         jPanel1.add(projectList);   // Label
 
-//        jPanel2.add(test);
-
         //设置Label
         projectList.setFont(new Font("Arial", Font.BOLD, 16));
 
@@ -113,7 +112,6 @@ public class Interface {
         home();
         addTask(taskButton, frame);
         addProject();
-        projectItem();
     }
 
     public void home(){
@@ -135,7 +133,6 @@ public class Interface {
         task.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // frame.dispose();
                 //创建一个新的frame用来添加task信息
                 JFrame taskFrame = new JFrame();
                 taskFrame.setLocation(100, 50);
@@ -203,12 +200,8 @@ public class Interface {
                 // For confirm button
                 confirmCancel(confirmButton, cancelButton, taskTxt, cmb, taskFrame, jPanel2, frame, jSplitPane);
 
-                // For cancel button
-
-
-                //和Logic part 联动
+                //使用Todo class
                 todo.addTask(taskTxt.getText(), counter, (String) cmb.getSelectedItem());
-
 
             }
         });
@@ -240,6 +233,14 @@ public class Interface {
                 //添加到jSplitPane中，然后再添加到frame中
                 fm2.add(jSplitPane);
 
+                //代码部分，存储数据
+                if (taskTxt.getText() == "Please input your task: "){
+                    todo.addTask(taskTxt.getText(), counter, (String) cmb.getSelectedItem());
+                }
+                else if ( taskTxt.getText() == "Please input your project: "){
+                    todo.addTaskToProject(todo.getTask(counter), number);
+                }
+
                 //counter
                 counter++;
                 //关闭窗口
@@ -261,7 +262,6 @@ public class Interface {
         projectButton.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // frame.dispose();
                 //创建一个新的frame用来添加task信息
                 JFrame projectFrame = new JFrame();
                 projectFrame.setLocation(100, 50);
@@ -322,6 +322,9 @@ public class Interface {
                 jPanel5.add(projectTxt);
                 jPanel5.add(cmb);
 
+                //代码部分，创建一个project
+                todo.addProject(projectTxt.getText(), number, (String) cmb.getSelectedItem());
+
                 // For confirm button, 按一下就会出现新的project
                 confirmButton.addActionListener(new AbstractAction() {
                     @Override
@@ -339,6 +342,10 @@ public class Interface {
                         jPanel1.revalidate();
 
                         frame.add(jSplitPane);
+
+
+                        //代码部分，生成一个project
+                        todo.addProject(projectTxt.getText(), number, (String) cmb.getSelectedItem());
 
                         //存储button到array中
                         buttonArray.add(newProject);
@@ -380,7 +387,6 @@ public class Interface {
                                 newTask.addActionListener(new AbstractAction() {
                                     @Override
                                     public void actionPerformed(ActionEvent e) {
-                                        // frame.dispose();
                                         //创建一个新的frame用来添加task信息
                                         JFrame taskFrame = new JFrame();
                                         taskFrame.setLocation(100, 50);
@@ -448,8 +454,6 @@ public class Interface {
                                         // For confirm button
                                         confirmCancel(confirmButton, cancelButton, taskTxt, cmb, taskFrame, jPanel_project_2, projectFrame, jSplitPane3);
 
-                                        // For cancel button
-
                                     }
                                 });
 
@@ -476,31 +480,6 @@ public class Interface {
                 });
             }
         });
-    }
-
-    public void projectFrame(){
-
-        for (int i = 0; i < buttonArray.size(); i++){
-
-            buttonArray.get(i).addActionListener(new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-
-
-
-                }
-            });
-
-        }
-    }
-
-    public void projectItem(){
-
-        for (int i = 0; i < buttonArray.size(); i++){
-
-
-
-        }
     }
 
 

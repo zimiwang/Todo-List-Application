@@ -2,14 +2,19 @@ package main.engine;
 
 import java.util.LinkedList;
 
+/**
+ * This class can create a task based on name, id and due date.
+ * @author Ziming Wang
+ * @version 1.0
+ */
 public class Task {
-    // instance 变量
+    // instance variables
     private String name;
     private int id;
     private boolean status;
     private String due_date;
 
-    // 构造函数
+    // Constructor
     public Task(String name, int id, String due_date) {
         this.name = name;
         this.id = id;
@@ -44,7 +49,10 @@ public class Task {
         this.due_date = due_date;
     }
 
-
+    /**
+     * Change the status of the current task to true,
+     * which means that the task has been completed.
+     */
     public void changeStatus(){
         status = true;
     }
