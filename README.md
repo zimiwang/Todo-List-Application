@@ -30,3 +30,5 @@ And repeat
 End with an example of getting some data out of the system or using it
 for a little demo
 ## Authors
+
+  - **Ziming Wang** - *Provided everything for this project* -
