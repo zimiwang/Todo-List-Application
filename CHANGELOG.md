@@ -9,8 +9,8 @@ Todo List in Java
 ## [1.0] - 2020-11-06
 
 - Completed engine part
-- Completed gui part
-- Tested each files from engine
+- Completed GUI part
+- Tested each file from the engine
 - Updated README.md
 
 ### Added
