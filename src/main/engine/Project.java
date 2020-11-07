@@ -68,6 +68,7 @@ public class Project {
     /**
      * According to the id of the task, it can be accurately found from the project and removed from it.
      * @param id The id of the task to be removed.
+     * @throws IllegalArgumentException on input error
      */
     public void removeTask(int id){
 

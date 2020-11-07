@@ -33,6 +33,7 @@ public class Todo {
      *  Find the task with the same id as the input from the task set, and return it.
      * @param id The id of the task to find.
      * @return A task to be found.
+     * @throws IllegalArgumentException on input error
      */
     public Task getTask(int id){
 
@@ -52,6 +53,7 @@ public class Todo {
      *  Find the project with the same id as the input from the project set, and return it.
      * @param id The id of the project to find.
      * @return A project to be found.
+     * @throws IllegalArgumentException on input error
      */
     public Project getProject(int id){
 
@@ -110,6 +112,7 @@ public class Todo {
     /**
      *  This method can find the task according to the id and change the status of this task to true.
      * @param id The id of the task whose status is to be changed.
+     * @throws IllegalArgumentException on input error
      */
     public void taskStatus(int id){
 
@@ -126,6 +129,7 @@ public class Todo {
     /**
      *  This method can find the project according to the id and change the status of this task to true.
      * @param id The id of the project whose status is to be changed.
+     * @throws IllegalArgumentException on input error
      */
     public void projectStatus(int id){
 
@@ -143,6 +147,7 @@ public class Todo {
      *  This method can insert a task into the specified project.
      * @param task Task to be added into project.
      * @param idProject The id of the project.
+     * @throws IllegalArgumentException on input error
      */
     public void addTaskToProject(Task task, int idProject){
 
@@ -160,6 +165,7 @@ public class Todo {
      *  This method can delete the task with the specified id from the specified project.
      * @param idTask The id of the task to be deleted.
      * @param idProject The id of the project where this task is located.
+     * @throws IllegalArgumentException on input error
      */
     public void deleteTaskFromProject(int idTask, int idProject){
 
