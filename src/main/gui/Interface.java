@@ -11,6 +11,7 @@ import java.util.concurrent.Flow;
 
 /**
  * This class contains all the gui parts in java swing. Output the To-do list in the form of a graphical interface.
+ *
  * @author Ziming Wang
  * @version 1.0
  */
@@ -29,29 +30,27 @@ public class Interface {
     JButton homeButton;
     JButton taskButton;
     JButton projectButton;
-    JButton test;
 
     JLabel projectList;
 
     JSplitPane jSplitPane;
 
 
-    // 点击project打开新的页面
-    ArrayList<JButton> buttonArray;
-
     public Interface() {
-        todo = new Todo();
+        todo = Todo.getInstance();
 
         frame = new JFrame();
         jPanel1 = new JPanel();
         jPanel2 = new JPanel();
 
-        buttonArray = new ArrayList<>();
-
         initialize();
     }
 
-
+    /**
+     * This method is included in the constructor, so whenever an object is created, a gui interface is created directly.
+     * This main interface contains Home, addTask, and AddProject buttons. They are used to refresh the interface, add tasks and add projects.
+     *
+     */
     public void initialize() {
         //设置主窗口
         frame.setTitle("Todo List");
@@ -114,6 +113,10 @@ public class Interface {
         addProject();
     }
 
+    /**
+     * This method contains an action listener for the Home button, and the main interface will be refreshed every time it is pressed.
+     *
+     */
     public void home(){
         homeButton.addActionListener(new AbstractAction() {
             @Override
@@ -126,7 +129,13 @@ public class Interface {
 
     }
 
-
+    /**
+     * This method sets up an action listener that allows the add task button to pop up a window,
+     * which is used to collect the data of the task to be created.
+     *
+     * @param task A button of type JButton with "add task" written in the gui.
+     * @param frame The frame where the button task sits.
+     */
     public void addTask(JButton task, JFrame frame) {
 
         //为按钮设置时间监听
@@ -207,6 +216,20 @@ public class Interface {
         });
     }
 
+    /**
+     * This method is used to add action listener to confirm button and cancel button. When the confirm button is pressed,
+     * this method will create a task on the main interface based on the data obtained from the addTask method. It has name, due date and id.
+     * The Cancel button can close the window popped up by the addTask method.
+     *
+     * @param confirmButton This is a JButton type button, it is called "Confirm".
+     * @param cancelButton This is a JButton type button, it is called "Cancel".
+     * @param taskTxt The text data obtained in the task button. Its meaning is the name of the task.
+     * @param cmb JComboBox type data obtained in the task button. Its meaning is due_data of task.
+     * @param fm1 The frame used in the addTask method.
+     * @param jp The JPanel type data in the main interface is used to store the generated task and display it to the user.
+     * @param fm2 The frame used by the main interface.
+     * @param jSplitPane JSplitPane type data is used to divide the main interface into two.
+     */
     public void confirmCancel(JButton confirmButton,JButton cancelButton, JTextField taskTxt, JComboBox cmb, JFrame fm1,
                               JPanel jp, JFrame fm2, JSplitPane jSplitPane){
         confirmButton.addActionListener(new AbstractAction() {
@@ -256,9 +279,20 @@ public class Interface {
         });
     }
 
+    /**
+     *
+     * This method is to set the action listener for the add project button.
+     * Its function is to pop up a new window to collect the information needed to create a project.
+     * It also has a confirm button and a cancel button.
+     * When the confirm button is clicked, a project button will be created in the main interface, and there will be a detailed project data on it.
+     * Since it is a button, when the project button is clicked again, a project window will be generated.
+     * In this window, you can use the "add task" button again to add tasks. But this time add task to the project window instead of the main interface.
+     * This means that the project window contains tasks belonging to the project.
+     *
+     */
     public void addProject() {
 
-        //为按钮设置时间监听
+        //为按钮设置action listener
         projectButton.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -346,9 +380,6 @@ public class Interface {
 
                         //代码部分，生成一个project
                         todo.addProject(projectTxt.getText(), number, (String) cmb.getSelectedItem());
-
-                        //存储button到array中
-                        buttonArray.add(newProject);
 
                         //为每一个newProject创建一个frame
                         newProject.addActionListener(new AbstractAction() {
@@ -457,9 +488,6 @@ public class Interface {
                                     }
                                 });
 
-
-
-
                                 jPanel_project_1.setBackground(Color.red);
                                 jPanel_project_2.setBackground(Color.green);
                             }
@@ -482,7 +510,10 @@ public class Interface {
         });
     }
 
-
+    /**
+     * This method demonstrates Interface().
+     * @param args Unused
+     */
     public static void main (String[] args){
         Interface menu = new Interface();
     }
