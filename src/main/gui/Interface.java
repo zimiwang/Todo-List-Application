@@ -52,38 +52,39 @@ public class Interface {
      *
      */
     public void initialize() {
-        //设置主窗口
+
+        //Set the main window
         frame.setTitle("Todo List");
         frame.setSize(1000, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        //增加标签
+        //Add label
         projectList = new JLabel("Project List: ", JLabel.CENTER);
 
-        //创建按钮
+        //Create buttons
         taskButton = new JButton("+Add Task");
         projectButton = new JButton("+Add Project");
         homeButton = new JButton("Home");
 
-        //设置按钮参数
+        //Set button parameters
         taskButton.setFont(new Font("Arial", Font.BOLD, 16));
         projectButton.setFont(new Font("Arial", Font.BOLD, 16));
         homeButton.setFont(new Font("Arial", Font.BOLD, 16));
 
-        //取消文字附近的边框
+        //Remove the border around the text in the button
         taskButton.setFocusPainted(false);
         projectButton.setFocusPainted(false);
         homeButton.setFocusPainted(false);
 
-        //取消按钮边框
+        //Remove button border
         taskButton.setBorderPainted(false);
         projectButton.setBorderPainted(false);
         homeButton.setBorderPainted(false);
 
 
-        //添加按钮到JPanel
+        //Add button to JPanel
         jPanel1.setLayout(new GridLayout(10, 1, 1, 1));
         jPanel2.setLayout(new GridLayout(10, 1, 1, 1));
 
@@ -92,21 +93,21 @@ public class Interface {
         jPanel1.add(projectButton);
         jPanel1.add(projectList);   // Label
 
-        //设置Label
+        //Set up Label
         projectList.setFont(new Font("Arial", Font.BOLD, 16));
 
-        //背景颜色
-        jPanel1.setBackground(Color.red);
-        jPanel2.setBackground(Color.green);
+        //background color
+        jPanel1.setBackground(Color.LIGHT_GRAY);
+        jPanel2.setBackground(Color.GRAY);
 
 
-        //分割窗口
+        //Split window
         jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, false, jPanel1, jPanel2);
-        jSplitPane.setDividerLocation(200); //分割线的位置  也就是初始位置
-        jSplitPane.setOneTouchExpandable(false); //是否可展开或收起，在这里没用
-        jSplitPane.setDividerSize(2);//设置分割线的宽度 像素为单位
-        jSplitPane.setEnabled(false); //设置分割线不可拖动！！
-        frame.add(jSplitPane);  //加入到面板中就好了
+        jSplitPane.setDividerLocation(200); //The position of the dividing line
+        jSplitPane.setOneTouchExpandable(false); //Can be expanded or collapsed
+        jSplitPane.setDividerSize(2);//Set the width of the dividing line
+        jSplitPane.setEnabled(false); //Set the dividing line to not drag！
+        frame.add(jSplitPane);  //Add to frame
 
         home();
         addTask(taskButton, frame);
@@ -138,11 +139,12 @@ public class Interface {
      */
     public void addTask(JButton task, JFrame frame) {
 
-        //为按钮设置时间监听
+        //Set the action listener for the button
         task.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //创建一个新的frame用来添加task信息
+
+                //Create a new frame to add task information
                 JFrame taskFrame = new JFrame();
                 taskFrame.setLocation(100, 50);
                 taskFrame.setSize(400, 200);
@@ -150,45 +152,46 @@ public class Interface {
                 taskFrame.setVisible(true);
                 taskFrame.setBackground(Color.BLACK);
 
-                //创建jPanel3，4
+                //Create jPanel3, 4
                 JPanel jPanel3 = new JPanel();
                 JPanel jPanel4 = new JPanel();
 
-                //创建确认和取消按钮
+                //Create confirmation and cancel buttons
                 JButton confirmButton = new JButton("Confirm");
                 JButton cancelButton = new JButton("Cancel");
 
-                //取消文字附近的边框
+                //Remove the border around the text
                 confirmButton.setFocusPainted(false);
                 cancelButton.setFocusPainted(false);
 
-                //设置jPanel3
+                //Set up jPanel3
                 jPanel3.setLayout(new GridLayout(2, 1, 8, 1));
 
-                //设置jPanel4
+                //Set up jPanel4
                 jPanel4.setLayout(new GridLayout(1, 10, 8, 1));
 
-                //添加按钮到jPanel4
+                //Add button to jPanel4
                 jPanel4.add(confirmButton);
                 jPanel4.add(cancelButton);
 
                 confirmButton.setBackground(Color.red);
 
-                jPanel3.setBackground(Color.red);
-                jPanel4.setBackground(Color.green);
+                jPanel3.setBackground(Color.LIGHT_GRAY);
+                jPanel4.setBackground(Color.GRAY);
 
                 taskFrame.add(jPanel4);
-                //分割窗口
-                JSplitPane jSplitPane2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, false, jPanel3, jPanel4);
-                jSplitPane2.setDividerLocation(120); //分割线的位置  也就是初始位置
-                jSplitPane2.setOneTouchExpandable(false); //是否可展开或收起，在这里没用
-                jSplitPane2.setDividerSize(2);//设置分割线的宽度 像素为单位
-                jSplitPane2.setEnabled(false); //设置分割线不可拖动！！
-                taskFrame.add(jSplitPane2);  //加入到面板中就好了
 
-                //创建下拉列表
-                JComboBox cmb = new JComboBox();    //创建JComboBox
-                cmb.addItem("Please select a due date");    //向下拉列表中添加一项
+                //Split window
+                JSplitPane jSplitPane2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, false, jPanel3, jPanel4);
+                jSplitPane2.setDividerLocation(120); //The position of the dividing line
+                jSplitPane2.setOneTouchExpandable(false); //Can be expanded or collapsed
+                jSplitPane2.setDividerSize(2);//Set the width of the dividing line
+                jSplitPane2.setEnabled(false); //Set the dividing line to not drag！
+                taskFrame.add(jSplitPane2);  //Add to frame
+
+                //Create drop-down list
+                JComboBox cmb = new JComboBox();    //Create JComboBox
+                cmb.addItem("Please select a due date");    //Add an item to the drop-down list
                 cmb.addItem("1");
                 cmb.addItem("2");
                 cmb.addItem("3");
@@ -197,19 +200,19 @@ public class Interface {
                 cmb.addItem("6");
                 cmb.addItem("7");
 
-                //创建单行文本框
+                //Create a single-line text box
                 JTextField taskTxt = new JTextField(28);
                 taskTxt.setFont(new Font("Arial", Font.PLAIN, 14));
                 taskTxt.setText("Please input your task: ");
 
-                //添加到jPanel3
+                //Add to jPanel3
                 jPanel3.add(taskTxt);
                 jPanel3.add(cmb);
 
                 // For confirm button
                 confirmCancel(confirmButton, cancelButton, taskTxt, cmb, taskFrame, jPanel2, frame, jSplitPane);
 
-                //使用Todo class
+                //Use To-do class to add task
                 todo.addTask(taskTxt.getText(), counter, (String) cmb.getSelectedItem());
 
             }
@@ -235,13 +238,13 @@ public class Interface {
         confirmButton.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // 创建jPanel，创建task到frame中
+                // Create jPanel, create task to frame
 
                 String date = taskTxt.getText();
                 String name = cmb.getName();
                 String varName = (String) cmb.getSelectedItem();
 
-                // 创建新的list
+                // Create a new list
                 JRadioButton newTask=new JRadioButton("          Task "+ counter + ": " + date + "                   Time Left: " + varName + " days");
                 newTask.setBackground(Color.white);
                 newTask.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -250,13 +253,13 @@ public class Interface {
 
                 jp.add(newTask);
 
-                //动态刷新组件
+                //Dynamically refresh components
                 jp.revalidate();
 
-                //添加到jSplitPane中，然后再添加到frame中
+                //Add to jSplitPane, and then add to the frame
                 fm2.add(jSplitPane);
 
-                //代码部分，存储数据
+                //Code part, create a task or insert task into project
                 if (taskTxt.getText() == "Please input your task: "){
                     todo.addTask(taskTxt.getText(), counter, (String) cmb.getSelectedItem());
                 }
@@ -266,7 +269,7 @@ public class Interface {
 
                 //counter
                 counter++;
-                //关闭窗口
+                //close the window
                 fm1.dispose();
             }
         });
@@ -292,11 +295,12 @@ public class Interface {
      */
     public void addProject() {
 
-        //为按钮设置action listener
+        //Set the action listener for the button
         projectButton.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //创建一个新的frame用来添加task信息
+
+                //Create a new frame to add task information
                 JFrame projectFrame = new JFrame();
                 projectFrame.setLocation(100, 50);
                 projectFrame.setSize(400, 200);
@@ -304,41 +308,41 @@ public class Interface {
                 projectFrame.setVisible(true);
                 projectFrame.setBackground(Color.BLACK);
 
-                //创建jPanel5，6
+                //Create jPanel5, 6
                 JPanel jPanel5 = new JPanel();
                 JPanel jPanel6 = new JPanel();
 
-                //创建确认和取消按钮
+                //Create confirmation and cancel buttons
                 JButton confirmButton = new JButton("Confirm");
                 JButton cancelButton = new JButton("Cancel");
 
-                //设置jPanel3
+                //Set up jPanel5
                 jPanel5.setLayout(new GridLayout(2, 1, 8, 1));
 
-                //设置jPanel4
+                //Set up jPanel6
                 jPanel6.setLayout(new GridLayout(1, 10, 8, 1));
 
-                //添加按钮到jPanel4
+                //Add button to jPanel6
                 jPanel6.add(confirmButton);
                 jPanel6.add(cancelButton);
 
                 confirmButton.setBackground(Color.red);
 
-                jPanel5.setBackground(Color.red);
-                jPanel6.setBackground(Color.green);
+                jPanel5.setBackground(Color.LIGHT_GRAY);
+                jPanel6.setBackground(Color.GRAY);
 
                 projectFrame.add(jPanel5);
-                //分割窗口
+                //Split window
                 JSplitPane jSplitPane2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, false, jPanel5, jPanel6);
-                jSplitPane2.setDividerLocation(120); //分割线的位置  也就是初始位置
-                jSplitPane2.setOneTouchExpandable(false); //是否可展开或收起，在这里没用
-                jSplitPane2.setDividerSize(2);//设置分割线的宽度 像素为单位
-                jSplitPane2.setEnabled(false); //设置分割线不可拖动！！
-                projectFrame.add(jSplitPane2);  //加入到面板中就好了
+                jSplitPane2.setDividerLocation(120); //The position of the dividing line
+                jSplitPane2.setOneTouchExpandable(false); //Can be expanded or collapsed
+                jSplitPane2.setDividerSize(2);//Set the width of the dividing line
+                jSplitPane2.setEnabled(false); //Set the dividing line to not drag！
+                projectFrame.add(jSplitPane2);  //Add to frame
 
-                //创建下拉列表
-                JComboBox cmb = new JComboBox();    //创建JComboBox
-                cmb.addItem("Please select a due date");    //向下拉列表中添加一项
+                //Create drop-down list
+                JComboBox cmb = new JComboBox();    //Create JComboBox
+                cmb.addItem("Please select a due date");    //Add an item to the drop-down list
                 cmb.addItem("1");
                 cmb.addItem("2");
                 cmb.addItem("3");
@@ -347,27 +351,27 @@ public class Interface {
                 cmb.addItem("6");
                 cmb.addItem("7");
 
-                //创建单行文本框
+                //Create a single-line text box
                 JTextField projectTxt = new JTextField(28);
                 projectTxt.setFont(new Font("Arial", Font.PLAIN, 14));
                 projectTxt.setText("Please input your project: ");
 
-                //添加到jPanel3
+                //Add to jPanel5
                 jPanel5.add(projectTxt);
                 jPanel5.add(cmb);
 
-                //代码部分，创建一个project
+                //Code part, create a project
                 todo.addProject(projectTxt.getText(), number, (String) cmb.getSelectedItem());
 
-                // For confirm button, 按一下就会出现新的project
+                // For confirm button, click and a new project will appear
                 confirmButton.addActionListener(new AbstractAction() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        //先获取参数
+                        //Get the parameters first
                         String data = projectTxt.getText();
                         String name = (String) cmb.getSelectedItem();
 
-                        //创建项目的button
+                        //Create project button
                         JButton newProject = new JButton("Project " + number + "  Due: " + name + " days");
                         newProject.setFocusPainted(false);
                         newProject.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -378,14 +382,14 @@ public class Interface {
                         frame.add(jSplitPane);
 
 
-                        //代码部分，生成一个project
+                        //Code part, generate a project
                         todo.addProject(projectTxt.getText(), number, (String) cmb.getSelectedItem());
 
-                        //为每一个newProject创建一个frame
+                        //Create a frame for each newProject
                         newProject.addActionListener(new AbstractAction() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                //创建project的frame
+                                //Create the project frame
                                 JFrame projectFrame = new JFrame();
                                 projectFrame.setLocation(100, 50);
                                 projectFrame.setSize(900, 500);
@@ -393,32 +397,31 @@ public class Interface {
                                 projectFrame.setVisible(true);
                                 projectFrame.setBackground(Color.BLACK);
 
-                                //创建两个jpanel来装东西
+                                //Create two Jpanels to install things
                                 JPanel jPanel_project_1 = new JPanel();
                                 JPanel jPanel_project_2 = new JPanel();
 
                                 jPanel_project_1.setLayout(new GridLayout(10,1,1,1));
                                 jPanel_project_2.setLayout(new GridLayout(10,1,2,2));
 
-                                //创建按钮
+                                //Create button
                                 JButton newTask = new JButton("Add Task");
-                                //调整参数
 
-                                //添加按钮
+                                //Add button
                                 jPanel_project_1.add(newTask);
 
-                                //将frame分隔开
+                                //Separate the frame
                                 JSplitPane jSplitPane3 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, false, jPanel_project_1, jPanel_project_2);
-                                jSplitPane3.setDividerLocation(120); //分割线的位置  也就是初始位置
-                                jSplitPane3.setOneTouchExpandable(false); //是否可展开或收起，在这里没用
-                                jSplitPane3.setDividerSize(2);//设置分割线的宽度 像素为单位
-                                jSplitPane3.setEnabled(false); //设置分割线不可拖动！！
-                                projectFrame.add(jSplitPane3);  //加入到面板中就好了
+                                jSplitPane3.setDividerLocation(120); //The position of the dividing line
+                                jSplitPane3.setOneTouchExpandable(false); //Can be expanded or collapsed
+                                jSplitPane3.setDividerSize(2);  //Set the width of the dividing line
+                                jSplitPane3.setEnabled(false); //Set the dividing line to not drag！
+                                projectFrame.add(jSplitPane3);  //Add to frame
 
                                 newTask.addActionListener(new AbstractAction() {
                                     @Override
                                     public void actionPerformed(ActionEvent e) {
-                                        //创建一个新的frame用来添加task信息
+                                        //Create a new frame to add task information
                                         JFrame taskFrame = new JFrame();
                                         taskFrame.setLocation(100, 50);
                                         taskFrame.setSize(400, 200);
@@ -426,45 +429,45 @@ public class Interface {
                                         taskFrame.setVisible(true);
                                         taskFrame.setBackground(Color.BLACK);
 
-                                        //创建jPanel3，4
+                                        //Create jPanel3, 4
                                         JPanel jPanel3 = new JPanel();
                                         JPanel jPanel4 = new JPanel();
 
-                                        //创建确认和取消按钮
+                                        //Create confirmation and cancel buttons
                                         JButton confirmButton = new JButton("Confirm");
                                         JButton cancelButton = new JButton("Cancel");
 
-                                        //取消文字附近的边框
+                                        //Remove the border around the text
                                         confirmButton.setFocusPainted(false);
                                         cancelButton.setFocusPainted(false);
 
-                                        //设置jPanel3
+                                        //Set up jPanel3
                                         jPanel3.setLayout(new GridLayout(2, 1, 8, 1));
 
-                                        //设置jPanel4
+                                        //Set up jPanel4
                                         jPanel4.setLayout(new GridLayout(1, 10, 8, 1));
 
-                                        //添加按钮到jPanel4
+                                        //Add button to jPanel4
                                         jPanel4.add(confirmButton);
                                         jPanel4.add(cancelButton);
 
                                         confirmButton.setBackground(Color.red);
 
-                                        jPanel3.setBackground(Color.red);
-                                        jPanel4.setBackground(Color.green);
+                                        jPanel3.setBackground(Color.LIGHT_GRAY);
+                                        jPanel4.setBackground(Color.GRAY);
 
                                         taskFrame.add(jPanel4);
-                                        //分割窗口
+                                        //Split window
                                         JSplitPane jSplitPane2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, false, jPanel3, jPanel4);
-                                        jSplitPane2.setDividerLocation(120); //分割线的位置  也就是初始位置
-                                        jSplitPane2.setOneTouchExpandable(false); //是否可展开或收起，在这里没用
-                                        jSplitPane2.setDividerSize(2);//设置分割线的宽度 像素为单位
-                                        jSplitPane2.setEnabled(false); //设置分割线不可拖动！！
-                                        taskFrame.add(jSplitPane2);  //加入到面板中就好了
+                                        jSplitPane2.setDividerLocation(120); //The position of the dividing line
+                                        jSplitPane2.setOneTouchExpandable(false); //Can be expanded or collapsed
+                                        jSplitPane2.setDividerSize(2);//Set the width of the dividing line
+                                        jSplitPane2.setEnabled(false); //Set the dividing line to not drag！
+                                        taskFrame.add(jSplitPane2);  //Add to frame
 
-                                        //创建下拉列表
-                                        JComboBox cmb = new JComboBox();    //创建JComboBox
-                                        cmb.addItem("Please select a due date");    //向下拉列表中添加一项
+                                        //Create drop-down list
+                                        JComboBox cmb = new JComboBox();    //Create JComboBox
+                                        cmb.addItem("Please select a due date");    //Add an item to the drop-down list
                                         cmb.addItem("1");
                                         cmb.addItem("2");
                                         cmb.addItem("3");
@@ -473,12 +476,12 @@ public class Interface {
                                         cmb.addItem("6");
                                         cmb.addItem("7");
 
-                                        //创建单行文本框
+                                        //Create a single-line text box
                                         JTextField taskTxt = new JTextField(28);
                                         taskTxt.setFont(new Font("Arial", Font.PLAIN, 14));
                                         taskTxt.setText("Please input your task: ");
 
-                                        //添加到jPanel3
+                                        //Add to jPanel3
                                         jPanel3.add(taskTxt);
                                         jPanel3.add(cmb);
 
@@ -488,14 +491,14 @@ public class Interface {
                                     }
                                 });
 
-                                jPanel_project_1.setBackground(Color.red);
-                                jPanel_project_2.setBackground(Color.green);
+                                jPanel_project_1.setBackground(Color.LIGHT_GRAY);
+                                jPanel_project_2.setBackground(Color.GRAY);
                             }
                         });
 
-                        //number加一
+                        //number plus one
                         number++;
-                        //关闭窗口
+                        //close the window
                         projectFrame.dispose();
                     }
                 });
