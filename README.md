@@ -29,7 +29,25 @@ During this period, I used JAVA throughout. Since this project only requires MVP
   
     cd 3321-project-Ziming-Wang
   3. Run the main file by IDE
-## Usage
+## Usage  
+
+1. First, run the java file in the GUI file. The main interface of the Todo list application will appear.  
+![gui_1.png](https://github.com/UserZiming/3321-project-Ziming-Wang/wiki/gui/gui_1.png)  
+2. Then when you click the "+Add Task" button, a window will pop up. This window asks for the description of the task and how long the due date is.  
+![gui_2.png](https://github.com/UserZiming/3321-project-Ziming-Wang/wiki/gui/gui_2.png)  
+When inputting the corresponding information, a task will be generated. And there is a selectable point in front of each task. When the task is completed, you can manually click the mark, which means that the task has been completed.  
+![gui_3.png](https://github.com/UserZiming/3321-project-Ziming-Wang/wiki/gui/gui_3.png)  
+4. When you click the "+Add Project" button, a window will pop up. This window asks for the description of the project and how long the due date is.  
+![gui_4.png](https://github.com/UserZiming/3321-project-Ziming-Wang/wiki/gui/gui_4.png)  
+5. After clicking the confirm button, a button will appear on the far left of the GUI. This button is the newly generated project.  
+![gui_5.png](https://github.com/UserZiming/3321-project-Ziming-Wang/wiki/gui/gui_5.png)  
+6. When you click Project again, a window will pop up, which belongs to this project. The "Add Task" button can also be used in this window so that a task belonging to the project will be generated in this new window.  
+![gui_6.png](https://github.com/UserZiming/3321-project-Ziming-Wang/wiki/gui/gui_6.png)  
+7. When you click the "+Add Task" button, a window will pop up. This window asks for the description of the task and how long the due date is.  
+![gui_7.png](https://github.com/UserZiming/3321-project-Ziming-Wang/wiki/gui/gui_7.png)  
+8. In this way, all the information of the corresponding tasks can be displayed in the project at the same time.  
+![gui_8.png](https://github.com/UserZiming/3321-project-Ziming-Wang/wiki/gui/gui_8.png)  
+
 
 ## Contributing
 All the content in this Todo list application is done by myself. They include:
