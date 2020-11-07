@@ -28,7 +28,7 @@ During this period, I used JAVA throughout. Since this project only requires MVP
   2. Navigate into the repo
   
     cd 3321-project-Ziming-Wang
-  3. Run the main file
+  3. Run the main file by IDE
 ## Usage
 
 ## Contributing
@@ -43,8 +43,11 @@ All the content in this Todo list application is done by myself. They include:
  * Junit tests
 
 ## Building
-
-
+Regarding the process of this Todo list application. First of all, I followed the principles of TDD. When I first started working on the logic code part, I would first determine what test types this class would have, and then continue to complete the logic code through this principle. And every time a class is completed, the corresponding test will be completed. Here I choose Junit. Because it is easier for me to choose a test method that uses the Java language to realize my ideas.  
+In addition, I used the Facade Pattern as the pattern I want to follow. Because here, I think having a class contains all the methods that can be more easily used. For example, the GUI part. It can also make it easier for me to understand my own code. This can prevent me from making my project difficult to understand because of the complicated relationship between classes.  
+I choose Travis CI as my continuous testing tool. Because it can remind me and let me know what went wrong with my project, it is a very useful tool for me.  
+Then, I completed the UI part of the code. I use Java Swing to provide a graphical interface for my Todo list application. Due to my personal unfamiliarity with java swing, all my codes are stored in one class. In the end, I found it difficult for me to modify the code of my GUI part because they were bloated. But since I only implemented the code of the MVP feature, this does not affect the user's use. It will affect me by adding new features later. After this situation, I fully understand and understand the need to use different classes and methods to separate each part. This is easy to modify my original code, and it is easy to avoid the occurrence of high aggregation of the program.  
+In the end, considering that my program does not need to recreate a new object every time it runs. So I chose to follow and use the singleton pattern. By using the singleton pattern to avoid repeated creation of an object. In this way, the data previously used by the user can be effectively retained.
 ## Authors
 
   - **Ziming Wang** - *Provided everything for this project* -
