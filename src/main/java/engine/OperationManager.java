@@ -1,5 +1,7 @@
 package engine;
 
+import io.DataManager;
+
 import java.util.LinkedList;
 
 /**
@@ -11,28 +13,47 @@ public class OperationManager {
 
     private LinkedList<Task> tasks;
     private LinkedList<Project> projects;
+    private DataManager dataManager;
 
     // Constructor
-    public OperationManager(){
+    public OperationManager() {
 
         tasks = new LinkedList<>();
         projects = new LinkedList<>();
+
+        dataManager = new DataManager();
     }
 
     /**
-     *  Find the task with the same id as the input from the task set, and return it.
+     * Get the link list of all Tasks and return it
+     * @return Return a link list which contains all tasks
+     */
+    public LinkedList<Task> getTasks() {
+        return tasks;
+    }
+
+    /**
+     * Get the link list of all projects and return it
+     * @return Return a link list which contains all projects
+     */
+    public LinkedList<Project> getProjects() {
+        return projects;
+    }
+
+    /**
+     * Find the task with the same id as the input from the task set, and return it.
+     *
      * @param id The id of the task to find.
      * @return A task to be found.
      * @throws IllegalArgumentException on input error
      */
-    public Task getTask(int id){
+    public Task getTask(int id) {
 
         Task t = null;
-        for (int i = 0; i < tasks.size(); i++){
-            if (tasks.get(i).getId() == id){
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).getId() == id) {
                 t = tasks.get(i);
-            }
-            else{
+            } else {
                 throw new IllegalArgumentException("There is no this task!");
             }
         }
@@ -40,19 +61,19 @@ public class OperationManager {
     }
 
     /**
-     *  Find the project with the same id as the input from the project set, and return it.
+     * Find the project with the same id as the input from the project set, and return it.
+     *
      * @param id The id of the project to find.
      * @return A project to be found.
      * @throws IllegalArgumentException on input error
      */
-    public Project getProject(int id){
+    public Project getProject(int id) {
 
         Project p = null;
-        for (int i = 0; i < projects.size(); i++){
-            if (projects.get(i).getId() == id){
+        for (int i = 0; i < projects.size(); i++) {
+            if (projects.get(i).getId() == id) {
                 p = projects.get(i);
-            }
-            else{
+            } else {
                 throw new IllegalArgumentException("There is no this task!");
             }
         }
@@ -60,119 +81,122 @@ public class OperationManager {
     }
 
     /**
-     *  This method can add a task to tasks.
+     * This method can add a task to tasks.
+     *
      * @param t The question is a task that has been created.
      */
-    public void addTask(Task t){
+    public void addTask(Task t) {
         tasks.add(t);
     }
 
     /**
-     *  This method will create a task based on the input name, id and due date and add it to tasks.
-     * @param name The name of the task.
-     * @param id The id of the task.
+     * This method will create a task based on the input name, id and due date and add it to tasks.
+     *
+     * @param name     The name of the task.
+     * @param id       The id of the task.
      * @param due_date The due date of the task.
      */
-    public void addTask(String name, int id, String due_date){
+    public void addTask(String name, int id, String due_date) {
 
         Task task = new Task(name, id, due_date);
         tasks.add(task);
     }
 
     /**
-     *  This method can add an already created project to the projects.
+     * This method can add an already created project to the projects.
+     *
      * @param p p is a project that has been created.
      */
-    public void addProject(Project p){
+    public void addProject(Project p) {
         projects.add(p);
     }
 
     /**
      * This method creates a project based on the input name, id and due date, and adds the project to the projects.
-     * @param name The name of the project.
-     * @param id The id of the project.
+     *
+     * @param name     The name of the project.
+     * @param id       The id of the project.
      * @param due_date The due date of the project.
      */
-    public void addProject(String name, int id, String due_date){
+    public void addProject(String name, int id, String due_date) {
 
         Project project = new Project(name, id, due_date);
         projects.add(project);
     }
 
     /**
-     *  This method can find the task according to the id and change the status of this task to true.
+     * This method can find the task according to the id and change the status of this task to true.
+     *
      * @param id The id of the task whose status is to be changed.
      * @throws IllegalArgumentException on input error
      */
-    public void taskStatus(int id){
+    public void taskStatus(int id) {
 
-        for (int i = 0; i < tasks.size(); i++){
-            if (tasks.get(i).getId() == id){
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).getId() == id) {
                 tasks.get(i).setStatus(true);
-            }
-            else{
+            } else {
                 throw new IllegalArgumentException("There is no this task!");
             }
         }
     }
 
     /**
-     *  This method can find the project according to the id and change the status of this task to true.
+     * This method can find the project according to the id and change the status of this task to true.
+     *
      * @param id The id of the project whose status is to be changed.
      * @throws IllegalArgumentException on input error
      */
-    public void projectStatus(int id){
+    public void projectStatus(int id) {
 
-        for (int i = 0; i < projects.size(); i++){
-            if (projects.get(i).getId() == id){
+        for (int i = 0; i < projects.size(); i++) {
+            if (projects.get(i).getId() == id) {
                 projects.get(i).setStatus(true);
-            }
-            else{
+            } else {
                 throw new IllegalArgumentException("There is no this project!");
             }
         }
     }
 
     /**
-     *  This method can insert a task into the specified project.
-     * @param task Task to be added into project.
+     * This method can insert a task into the specified project.
+     *
+     * @param task      Task to be added into project.
      * @param idProject The id of the project.
      * @throws IllegalArgumentException on input error
      */
-    public void addTaskToProject(Task task, int idProject){
+    public void addTaskToProject(Task task, int idProject) {
 
-        for (int i = 0; i < projects.size(); i++){
-            if (projects.get(i).getId() == idProject){
+        for (int i = 0; i < projects.size(); i++) {
+            if (projects.get(i).getId() == idProject) {
                 projects.get(i).addTask(task);
-            }
-            else{
+            } else {
                 throw new IllegalArgumentException("There is no this project!");
             }
         }
     }
 
     /**
-     *  This method can delete the task with the specified id from the specified project.
-     * @param idTask The id of the task to be deleted.
+     * This method can delete the task with the specified id from the specified project.
+     *
+     * @param idTask    The id of the task to be deleted.
      * @param idProject The id of the project where this task is located.
      * @throws IllegalArgumentException on input error
      */
-    public void deleteTaskFromProject(int idTask, int idProject){
+    public void deleteTaskFromProject(int idTask, int idProject) {
 
-        for (int i = 0; i < projects.size(); i++){
-            if (projects.get(i).getId() == idProject){
+        for (int i = 0; i < projects.size(); i++) {
+            if (projects.get(i).getId() == idProject) {
 
-                for (int j = 0; j < projects.get(i).getProject().size(); j++){
+                for (int j = 0; j < projects.get(i).getProject().size(); j++) {
 
-                    if (projects.get(i).getProject().get(j).getId() == idTask){
+                    if (projects.get(i).getProject().get(j).getId() == idTask) {
                         projects.get(i).getProject().remove(j);
-                    }
-                    else {
+                    } else {
                         throw new IllegalArgumentException("There is no this task!");
                     }
                 }
-            }
-            else{
+            } else {
                 throw new IllegalArgumentException("There is no this project!");
             }
         }

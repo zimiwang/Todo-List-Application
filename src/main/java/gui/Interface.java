@@ -1,13 +1,11 @@
 package gui;
 
+import engine.OperationManager;
 import engine.Todo;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.lang.ref.Cleaner;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.concurrent.Flow;
 
 /**
  * This class contains all the gui parts in java swing. Output the To-do list in the form of a graphical interface.
@@ -27,6 +25,8 @@ public class Interface {
     JPanel jPanel2;
 
     // For main frame
+    JButton loadButton;
+    JButton saveButton;
     JButton homeButton;
     JButton taskButton;
     JButton projectButton;
@@ -67,27 +67,36 @@ public class Interface {
         taskButton = new JButton("+Add Task");
         projectButton = new JButton("+Add Project");
         homeButton = new JButton("Home");
+        saveButton = new JButton("Save");
+        loadButton = new JButton("Load");
 
         //Set button parameters
         taskButton.setFont(new Font("Arial", Font.BOLD, 16));
         projectButton.setFont(new Font("Arial", Font.BOLD, 16));
         homeButton.setFont(new Font("Arial", Font.BOLD, 16));
+        saveButton.setFont(new Font("Arial", Font.BOLD, 16));
+        loadButton.setFont(new Font("Arial", Font.BOLD, 16));
 
         //Remove the border around the text in the button
         taskButton.setFocusPainted(false);
         projectButton.setFocusPainted(false);
         homeButton.setFocusPainted(false);
+        saveButton.setFocusPainted(false);
+        loadButton.setFocusPainted(false);
 
         //Remove button border
         taskButton.setBorderPainted(false);
         projectButton.setBorderPainted(false);
         homeButton.setBorderPainted(false);
-
+        saveButton.setBorderPainted(false);
+        loadButton.setBorderPainted(false);
 
         //Add button to JPanel
         jPanel1.setLayout(new GridLayout(10, 1, 1, 1));
         jPanel2.setLayout(new GridLayout(10, 1, 1, 1));
 
+        jPanel1.add(loadButton);
+        jPanel1.add(saveButton);
         jPanel1.add(homeButton);
         jPanel1.add(taskButton);
         jPanel1.add(projectButton);
@@ -99,6 +108,20 @@ public class Interface {
         //background color
         jPanel1.setBackground(Color.LIGHT_GRAY);
         jPanel2.setBackground(Color.GRAY);
+
+        //Set the Action Listener of SaveButton
+        saveButton.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainSaveButton();
+            }
+        });
+        loadButton.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainLoadButton();
+            }
+        });
 
 
         //Split window
@@ -116,7 +139,6 @@ public class Interface {
 
     /**
      * This method contains an action listener for the Home button, and the main interface will be refreshed every time it is pressed.
-     *
      */
     public void home(){
         homeButton.addActionListener(new AbstractAction() {
@@ -212,8 +234,6 @@ public class Interface {
                 // For confirm button
                 confirmCancel(confirmButton, cancelButton, taskTxt, cmb, taskFrame, jPanel2, frame, jSplitPane);
 
-                //Use To-do class to add task
-                todo.addTask(taskTxt.getText(), counter, (String) cmb.getSelectedItem());
 
             }
         });
@@ -259,13 +279,10 @@ public class Interface {
                 //Add to jSplitPane, and then add to the frame
                 fm2.add(jSplitPane);
 
-                //Code part, create a task or insert task into project
-                if (taskTxt.getText() == "Please input your task: "){
-                    todo.addTask(taskTxt.getText(), counter, (String) cmb.getSelectedItem());
-                }
-                else if ( taskTxt.getText() == "Please input your project: "){
-                    todo.addTaskToProject(todo.getTask(counter), number);
-                }
+                //Code part, create a task
+
+                //Use To-do class to add task
+                todo.addTask(taskTxt.getText(), counter, (String) cmb.getSelectedItem());
 
                 //counter
                 counter++;
@@ -359,9 +376,6 @@ public class Interface {
                 //Add to jPanel5
                 jPanel5.add(projectTxt);
                 jPanel5.add(cmb);
-
-                //Code part, create a project
-                todo.addProject(projectTxt.getText(), number, (String) cmb.getSelectedItem());
 
                 // For confirm button, click and a new project will appear
                 confirmButton.addActionListener(new AbstractAction() {
@@ -485,8 +499,49 @@ public class Interface {
                                         jPanel3.add(taskTxt);
                                         jPanel3.add(cmb);
 
-                                        // For confirm button
-                                        confirmCancel(confirmButton, cancelButton, taskTxt, cmb, taskFrame, jPanel_project_2, projectFrame, jSplitPane3);
+                                        confirmButton.addActionListener(new AbstractAction() {
+                                            @Override
+                                            public void actionPerformed(ActionEvent e) {
+                                                // Create jPanel, create task to frame
+
+                                                String date = taskTxt.getText();
+                                                String name = cmb.getName();
+                                                String varName = (String) cmb.getSelectedItem();
+
+                                                // Create a new list
+                                                JRadioButton newTask=new JRadioButton("          Task "+ counter + ": " + date + "                   Time Left: " + varName + " days");
+                                                newTask.setBackground(Color.white);
+                                                newTask.setFont(new Font("Arial", Font.PLAIN, 16));
+                                                newTask.setFocusPainted(false);
+
+
+                                                jPanel_project_2.add(newTask);
+
+                                                //Dynamically refresh components
+                                                jPanel_project_2.revalidate();
+
+                                                //Add to jSplitPane, and then add to the frame
+                                                projectFrame.add(jSplitPane3);
+
+                                                //Code part, create a task or insert task into project\
+
+                                                todo.addTask(taskTxt.getText(), counter, (String) cmb.getSelectedItem());
+
+//                                                todo.addTaskToProject(todo.getTask(counter), counter);
+
+                                                //counter
+                                                counter++;
+                                                //close the window
+                                                taskFrame.dispose();
+                                            }
+                                        });
+
+                                        cancelButton.addActionListener(new AbstractAction() {
+                                            @Override
+                                            public void actionPerformed(ActionEvent e) {
+                                                taskFrame.dispose();
+                                            }
+                                        });
 
                                     }
                                 });
@@ -511,6 +566,71 @@ public class Interface {
                 });
             }
         });
+    }
+
+    /**
+     * This method is the Action Listener of saveButton, which can save all data
+     */
+    public void mainSaveButton(){
+
+        mainSave(todo);
+    }
+
+    /**
+     * This method is the Action Listener of loadButton, which can read data from the .json file and display it on the UI
+     */
+    public void mainLoadButton(){
+
+        OperationManager Data = mainLoad();
+
+        for (int i = 0; i < Data.getTasks().size(); i++){
+
+            JRadioButton loadTask=new JRadioButton("          Task "+ Data.getTasks().get(i).getId() + ": " + Data.getTasks().get(i).getName()
+                    + "                   Time Left: " + Data.getTasks().get(i).getDue_date() + " days");
+            loadTask.setBackground(Color.white);
+            loadTask.setFont(new Font("Arial", Font.PLAIN, 16));
+            loadTask.setFocusPainted(false);
+
+            jPanel2.add(loadTask);
+
+            //Dynamically refresh components
+            jPanel2.revalidate();
+
+            //Add to jSplitPane, and then add to the frame
+            frame.add(jSplitPane);
+        }
+
+        for (int j = 0; j < Data.getProjects().size(); j++){
+
+            JButton loadProject = new JButton("Project " + Data.getProjects().get(j).getId() + "  Due: " + Data.getProjects().get(j).getName() + " days");
+            loadProject.setFocusPainted(false);
+            loadProject.setFont(new Font("Arial", Font.PLAIN, 12));
+
+            jPanel1.add(loadProject);
+            jPanel1.revalidate();
+
+            frame.add(jSplitPane);
+        }
+
+    }
+
+    /**
+     * This method can convert the data containing all tasks and projects into a .json file
+     * @param todo This is a todo type object that contains all the methods in the classes
+     */
+    public void mainSave(Todo todo){
+
+        todo.saveData(todo.getOperationManager());
+    }
+
+    /**
+     * This method can convert the .json file into OperationManager type data containing all tasks and projects
+     * @return Return an OperationManager type of data
+     */
+    public OperationManager mainLoad(){
+
+        return todo.loadData();
+
     }
 
     /**

@@ -18,6 +18,8 @@ public class Project {
     private LinkedList<Task> project;
 
     // Constructor
+    public Project(){}
+
     public Project(String name, int id, String due_date) {
         this.name = name;
         this.due_date = due_date;
@@ -59,7 +61,7 @@ public class Project {
 
     /**
      *  Add a task to the project.
-     * @param t t is a task that has been created, it has all the contents of a task。
+     * @param t t is a task that has been created, it has all the contents of a task.
      */
     public void addTask(Task t){
         project.add(t);

@@ -1,7 +1,5 @@
 package engine;
 
-import java.util.LinkedList;
-
 /**
  * This class can create a task based on name, id and due date.
  * @author Ziming Wang
@@ -15,6 +13,7 @@ public class Task {
     private String due_date;
 
     // Constructor
+    public Task(){}
     public Task(String name, int id, String due_date) {
         this.name = name;
         this.id = id;

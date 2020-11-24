@@ -1,13 +1,6 @@
 package engine;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.junit.*;
 
 import static org.junit.Assert.*;
 
@@ -19,10 +12,11 @@ import static org.junit.Assert.*;
  */
 public class TodoTest {
 
-    OperationManager operationManager;
+    //OperationManager operationManager;
     Task task1;
     Task task2;
     Project project1;
+    Todo todo;
 
     public TodoTest(){
 
@@ -39,10 +33,11 @@ public class TodoTest {
     @Before
     public void setUp() {
 
-        operationManager = new OperationManager();
+        //operationManager = new OperationManager();
         task1 = new Task("test1", 1,"3");
         task2 = new Task("test2", 2, "4");
         project1 = new Project("project 1", 1, "5");
+        todo = new Todo();
     }
 
     @After
@@ -54,9 +49,11 @@ public class TodoTest {
      */
     @Test
     public void testAddTask_1() {
-        operationManager.addTask("www",3 ,"1");
+        todo.addTask("www",3 ,"1");
 
-        assertEquals("www", operationManager.getTask(3).getName());
+        System.out.println(todo.getTask(3).getName() );
+        assertEquals("www", todo.getTask(3).getName());
+
     }
 
     /**
@@ -64,9 +61,9 @@ public class TodoTest {
      */
     @Test
     public void testAddTask_2() {
-        operationManager.addTask(task1);
+        todo.addTask(task1);
 
-        assertEquals("test1", operationManager.getTask(1).getName());
+        assertEquals("test1", todo.getTask(1).getName());
     }
 
     /**
@@ -74,9 +71,9 @@ public class TodoTest {
      */
     @Test
     public void testAddProject_1() {
-        operationManager.addProject(project1);
+        todo.addProject(project1);
 
-        assertEquals("project 1", operationManager.getProject(1).getName());
+        assertEquals("project 1", todo.getProject(1).getName());
     }
 
     /**
@@ -84,9 +81,9 @@ public class TodoTest {
      */
     @Test
     public void testAddProject_2() {
-        operationManager.addProject("project 2", 2, "6");
+        todo.addProject("project 2", 2, "6");
 
-        assertEquals("project 2", operationManager.getProject(2).getName());
+        assertEquals("project 2", todo.getProject(2).getName());
     }
 
     /**
@@ -95,11 +92,11 @@ public class TodoTest {
     @Test
     public void testTaskStatus() {
 
-        operationManager.addTask("qwe",3 ,"1");
+        todo.addTask("qwe",3 ,"1");
 
-        assertFalse(operationManager.getTask(3).getStatus());
-        operationManager.taskStatus(3);
-        assertTrue(operationManager.getTask(3).getStatus());
+        assertFalse(todo.getTask(3).getStatus());
+        todo.taskStatus(3);
+        assertTrue(todo.getTask(3).getStatus());
 
     }
 
@@ -108,11 +105,13 @@ public class TodoTest {
      */
     @Test
     public void testProjectStatus() {
-        operationManager.addProject("mba",2 ,"4");
+        todo.addProject("mba",2 ,"4");
 
-        assertFalse(operationManager.getProject(2).getStatus());
-        operationManager.projectStatus(2);
-        assertTrue(operationManager.getProject(2).getStatus());
+        assertFalse(todo.getProject(2).getStatus());
+
+        todo.projectStatus(2);
+
+        assertTrue(todo.getProject(2).getStatus());
 
     }
 
@@ -122,11 +121,11 @@ public class TodoTest {
     @Test
     public void testAddTaskToProject() {
 
-        operationManager.addProject("abc",2 ,"4");
-        assertEquals(0, operationManager.getProject(2).getProject().size());
+        todo.addProject("abc",2 ,"4");
+        assertEquals(0, todo.getProject(2).getProject().size());
 
-        operationManager.addTaskToProject(task1, 2);
-        assertEquals(1, operationManager.getProject(2).getProject().size());
+        todo.addTaskToProject(task1, 2);
+        assertEquals(1, todo.getProject(2).getProject().size());
 
     }
 
@@ -135,12 +134,12 @@ public class TodoTest {
      */
     @Test
     public void testDeleteTaskFromProject() {
-        operationManager.addProject("aaa",2 ,"4");
-        operationManager.addTaskToProject(task1, 2);
-        operationManager.addTaskToProject(task2, 2);
-        assertEquals(2, operationManager.getProject(2).getProject().size());
-        operationManager.deleteTaskFromProject(1, 2);
-        assertEquals(1, operationManager.getProject(2).getProject().size());
+        todo.addProject("aaa",2 ,"4");
+        todo.addTaskToProject(task1, 2);
+        todo.addTaskToProject(task2, 2);
+        assertEquals(2, todo.getProject(2).getProject().size());
+        todo.deleteTaskFromProject(1, 2);
+        assertEquals(1, todo.getProject(2).getProject().size());
 
     }
 }

@@ -1,5 +1,7 @@
 package engine;
 
+import io.DataManager;
+
 import java.util.LinkedList;
 
 /**
@@ -11,22 +13,23 @@ import java.util.LinkedList;
 public class Todo {
 
     // Instance Variables
-    private Task task;
-    private Project project;
     private OperationManager operationManager;
-    private LinkedList<Task> tasks;
-    private LinkedList<Project> projects;
-    private static Todo UniqueInstance = new Todo();
+    private static final Todo instance = new Todo();
+
+    private final DataManager dataManager;
 
     // Constructor
     public Todo(){
-        tasks = new LinkedList<>();
-        projects = new LinkedList<>();
         operationManager = new OperationManager();
+        dataManager = new DataManager();
     }
     // Singleton
     public static Todo getInstance(){
-        return UniqueInstance;
+        return instance;
+    }
+
+    public OperationManager getOperationManager(){
+        return operationManager;
     }
 
     /**
@@ -37,16 +40,8 @@ public class Todo {
      */
     public Task getTask(int id){
 
-        Task t = null;
-        for (int i = 0; i < tasks.size(); i++){
-            if (tasks.get(i).getId() == id){
-                t = tasks.get(i);
-            }
-            else{
-                throw new IllegalArgumentException("There is no this task!");
-            }
-        }
-        return t;
+        return operationManager.getTask(id);
+
     }
 
     /**
@@ -57,16 +52,16 @@ public class Todo {
      */
     public Project getProject(int id){
 
-        Project p = null;
-        for (int i = 0; i < projects.size(); i++){
-            if (projects.get(i).getId() == id){
-                p = projects.get(i);
-            }
-            else{
-                throw new IllegalArgumentException("There is no this task!");
-            }
-        }
-        return p;
+        return operationManager.getProject(id);
+
+    }
+
+    public LinkedList<Task> getTasks() {
+        return operationManager.getTasks();
+    }
+
+    public LinkedList<Project> getProjects() {
+        return operationManager.getProjects();
     }
 
     /**
@@ -74,7 +69,7 @@ public class Todo {
      * @param t t is a task that has been created.
      */
     public void addTask(Task t){
-        tasks.add(t);
+        operationManager.addTask(t);
     }
 
     /**
@@ -85,8 +80,7 @@ public class Todo {
      */
     public void addTask(String name, int id, String due_date){
 
-        Task task = new Task(name, id, due_date);
-        tasks.add(task);
+        operationManager.addTask(name, id, due_date);
     }
 
     /**
@@ -94,7 +88,9 @@ public class Todo {
      * @param p p is a project that has been created.
      */
     public void addProject(Project p){
-        projects.add(p);
+
+        operationManager.addProject(p);
+
     }
 
     /**
@@ -104,9 +100,7 @@ public class Todo {
      * @param due_date The due date of the project.
      */
     public void addProject(String name, int id, String due_date){
-
-        Project project = new Project(name, id, due_date);
-        projects.add(project);
+        operationManager.addProject(name, id, due_date);
     }
 
     /**
@@ -116,14 +110,8 @@ public class Todo {
      */
     public void taskStatus(int id){
 
-        for (int i = 0; i < tasks.size(); i++){
-            if (tasks.get(i).getId() == id){
-                tasks.get(i).setStatus(true);
-            }
-            else{
-                throw new IllegalArgumentException("There is no this task!");
-            }
-        }
+        operationManager.taskStatus(id);
+
     }
 
     /**
@@ -133,14 +121,8 @@ public class Todo {
      */
     public void projectStatus(int id){
 
-        for (int i = 0; i < projects.size(); i++){
-            if (projects.get(i).getId() == id){
-                projects.get(i).setStatus(true);
-            }
-            else{
-                throw new IllegalArgumentException("There is no this project!");
-            }
-        }
+        operationManager.projectStatus(id);
+
     }
 
     /**
@@ -151,14 +133,8 @@ public class Todo {
      */
     public void addTaskToProject(Task task, int idProject){
 
-        for (int i = 0; i < projects.size(); i++){
-            if (projects.get(i).getId() == idProject){
-                projects.get(i).addTask(task);
-            }
-            else{
-                throw new IllegalArgumentException("There is no this project!");
-            }
-        }
+        operationManager.addTaskToProject(task, idProject);
+
     }
 
     /**
@@ -169,24 +145,23 @@ public class Todo {
      */
     public void deleteTaskFromProject(int idTask, int idProject){
 
-        for (int i = 0; i < projects.size(); i++){
-            if (projects.get(i).getId() == idProject){
-
-                for (int j = 0; j < projects.get(i).getProject().size(); j++){
-
-                    if (projects.get(i).getProject().get(j).getId() == idTask){
-                        projects.get(i).getProject().remove(j);
-                    }
-                    else {
-                        throw new IllegalArgumentException("There is no this task!");
-                    }
-                }
-            }
-            else{
-                throw new IllegalArgumentException("There is no this project!");
-            }
-        }
+        operationManager.deleteTaskFromProject(idTask, idProject);
 
     }
 
+    public void saveData(OperationManager todo){
+
+        dataManager.saveAllData(todo);
+
+    }
+
+    /**
+     * This method can read the data in the .json file and return it as OperationManager
+     * @return Return the data in the .json file as OperationManager type
+     */
+    public OperationManager loadData(){
+
+        return dataManager.loadAllData();
+
+    }
 }
