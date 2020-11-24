@@ -32,8 +32,8 @@ Todo List in Java
 
 - Create the first CHANGELOG.md
 
-[unreleased]: https://github.com/UserZiming/3321-project-Ziming-Wang/compare/Version 1.1...Version 0.1
+[unreleased]: https://github.com/UserZiming/3321-project-Ziming-Wang/compare/1.1...0.1
 
-[1.1]: https://github.com/UserZiming/3321-project-Ziming-Wang/releases/tag/Version 1.1...Version 0.1
-[1.0]: https://github.com/UserZiming/3321-project-Ziming-Wang/releases/tag/Version 1.0...Version 0.1
-[0.1]: https://github.com/UserZiming/3321-project-Ziming-Wang/releases/tag/Version 0.1
+[1.1]: https://github.com/UserZiming/3321-project-Ziming-Wang/releases/tag/1.1...0.1
+[1.0]: https://github.com/UserZiming/3321-project-Ziming-Wang/releases/tag/1.0...0.1
+[0.1]: https://github.com/UserZiming/3321-project-Ziming-Wang/releases/tag/0.1
