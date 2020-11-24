@@ -28,7 +28,9 @@ During this period, I used JAVA throughout. Since this project only requires MVP
   2. Navigate into the repo
   
     cd 3321-project-Ziming-Wang
-  3. Run the main file by IDE
+  3. Build with gradle
+  
+    gradle build
 ## Usage  
 
 1. First, run the java file in the GUI file. The main interface of the Todo list application will appear.  
@@ -48,6 +50,7 @@ When inputting the corresponding information, a task will be generated. And ther
 8. In this way, all the information of the corresponding tasks can be displayed in the project at the same time.  
 ![gui_8.png](https://github.com/UserZiming/3321-project-Ziming-Wang/wiki/gui/gui_8.png)  
 
+### After version 1.1
 
 ## Contributing
 All the content in this Todo list application is done by myself. They include:
