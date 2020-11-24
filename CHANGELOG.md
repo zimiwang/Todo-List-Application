@@ -34,6 +34,6 @@ Todo List in Java
 
 [unreleased]: https://github.com/UserZiming/3321-project-Ziming-Wang/compare/1.1...0.1
 
-[1.1]: https://github.com/UserZiming/3321-project-Ziming-Wang/releases/tag/1.1...0.1
-[1.0]: https://github.com/UserZiming/3321-project-Ziming-Wang/releases/tag/1.0...0.1
+[1.1]: https://github.com/UserZiming/3321-project-Ziming-Wang/compare/1.1...0.1
+[1.0]: https://github.com/UserZiming/3321-project-Ziming-Wang/compare/1.0...0.1
 [0.1]: https://github.com/UserZiming/3321-project-Ziming-Wang/releases/tag/0.1
